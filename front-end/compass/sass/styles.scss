@@ -1,0 +1,26 @@
+@import 'variables';
+
+.header{
+	.top-nav-bar{
+		margin-bottom: 5%;
+		ul{
+			display:flex;
+			justify-content: space-around;
+		}
+		.top-nav-item{
+			display:inline-block;
+
+		}
+	}
+	.bottom-nav-bar{
+		margin-top: 5%;
+		ul{
+			display:flex;
+			justify-content: space-around;
+		}
+		.bottom-nav-item{
+			display:inline-block;
+		}
+	}
+
+}

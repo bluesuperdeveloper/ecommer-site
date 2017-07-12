@@ -1,0 +1,26 @@
+/* line 4, ../../compass/sass/styles.scss */
+.header .top-nav-bar {
+  margin-bottom: 5%;
+}
+/* line 6, ../../compass/sass/styles.scss */
+.header .top-nav-bar ul {
+  display: flex;
+  justify-content: space-around;
+}
+/* line 10, ../../compass/sass/styles.scss */
+.header .top-nav-bar .top-nav-item {
+  display: inline-block;
+}
+/* line 15, ../../compass/sass/styles.scss */
+.header .bottom-nav-bar {
+  margin-top: 5%;
+}
+/* line 17, ../../compass/sass/styles.scss */
+.header .bottom-nav-bar ul {
+  display: flex;
+  justify-content: space-around;
+}
+/* line 21, ../../compass/sass/styles.scss */
+.header .bottom-nav-bar .bottom-nav-item {
+  display: inline-block;
+}
