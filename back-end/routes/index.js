@@ -59,9 +59,9 @@ router.post('/register', function(req,res){
 			const newID = results.insertId;
 			const newToken = randToken.uid(40);
 			const curTimeStamp = Date.now() / 1000
-			var insertQuery = "INSERT INTO users(uid, email, type, password, created, token) VALUES (?, ?, ?, ?, ?)";
+			var insertQuery = "INSERT INTO users (uid, email, type, password, created, token) VALUES (?, ?, ?, ?, ?)";
 			connection.query(insertQuery, [newID, email, type, password, curTimeStamp, newToken], (err, results)=>{
-				console.log(results);
+
 				if(err){
 					res.json({
 						msg: err
@@ -69,7 +69,8 @@ router.post('/register', function(req,res){
 				}else{
 					res.json({
 						msg: 'userInserted',
-						token: newToken
+						token: newToken,
+						name: name
 					})
 				}
 			})
@@ -77,7 +78,40 @@ router.post('/register', function(req,res){
 	}).catch((error)=>{
 		re.json(error);
 	})
-
-
 });
+
+router.post('/login', (req, res)=>{
+	const email = req.body.email;
+	const password = req.body.password;
+	var checkHash;
+	const checkEmail = new Promise((resolve, reject)=>{
+		var checkLoginQuery = "SELECT * FROM users WHERE email = ?";
+		connection.query(checkLoginQuery, [email], (error, results)=>{
+			if (error) throw error;
+			if(results.length === 0){
+				reject({msg:'emailNotExists'});
+			}else{
+				checkHash = bcrypt.compareSync(password, results[0].password);
+				resolve();
+			}
+		})
+	});
+	checkEmail.then(()=>{
+		if(checkHash){
+			const updateToken = 'UPDATE users SET token=?, token_exp=DATE_ADD(NOW(), INTERVAL 1 HOUR)';
+			var token = randToken.uid(40);
+			connection.query(updateToken, [token], (err, res)=>{
+				res.json({
+					msg: 'loginSuccess',
+					token:token
+				})
+			})
+		}else{
+			res.json({msg:'wrongPassword'});
+		}
+	}).catch((error)=>{
+		console.log(error);
+		res.json(error);
+	})
+})
 module.exports = router;

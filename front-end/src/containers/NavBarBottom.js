@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
+// this doesn't need to be a container, move it
 class NavBarBottom extends Component{
 	render(){
 		return (
