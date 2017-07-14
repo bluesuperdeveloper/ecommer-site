@@ -8,8 +8,8 @@ const Header = ()=> {
     return (
       <div className="header">
       	<NavBarTop />
-      	<div className="log container text-center">
-      		<h3>CHOCOLATE</h3>
+      	<div className="logo col-sm-12 text-center">
+      		<h3>:CHOCOLATE</h3>
       	</div>
       	<NavBarBottom />
       </div>

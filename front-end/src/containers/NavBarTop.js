@@ -10,6 +10,7 @@ class NavBarTop extends Component{
 						<Link to="/our-story"><li className="top-nav-item">OUR STORY</li></Link>
 						<Link to="/blog"><li className="top-nav-item">BLOG</li></Link>
 						<Link to="/contact"><li className="top-nav-item">CONTACT</li></Link>
+						<Link to="/register"><li className="top-nav-item">REGISTER</li></Link>
 					</ul>
 				</div>
 			</div>

@@ -1,26 +1,64 @@
-/* line 4, ../../compass/sass/styles.scss */
+/* line 3, ../../compass/sass/styles.scss */
+.header {
+  padding: 5% 0;
+}
+/* line 5, ../../compass/sass/styles.scss */
 .header .top-nav-bar {
   margin-bottom: 5%;
 }
-/* line 6, ../../compass/sass/styles.scss */
+/* line 7, ../../compass/sass/styles.scss */
 .header .top-nav-bar ul {
   display: flex;
   justify-content: space-around;
 }
-/* line 10, ../../compass/sass/styles.scss */
+/* line 11, ../../compass/sass/styles.scss */
 .header .top-nav-bar .top-nav-item {
   display: inline-block;
+  text-decoration: none;
+  color: black;
 }
-/* line 15, ../../compass/sass/styles.scss */
+/* line 18, ../../compass/sass/styles.scss */
 .header .bottom-nav-bar {
   margin-top: 5%;
 }
-/* line 17, ../../compass/sass/styles.scss */
+/* line 20, ../../compass/sass/styles.scss */
 .header .bottom-nav-bar ul {
   display: flex;
   justify-content: space-around;
 }
-/* line 21, ../../compass/sass/styles.scss */
+/* line 24, ../../compass/sass/styles.scss */
 .header .bottom-nav-bar .bottom-nav-item {
   display: inline-block;
+  text-decoration: none;
+  color: black;
+}
+/* line 30, ../../compass/sass/styles.scss */
+.header .logo {
+  padding-bottom: 5%;
+}
+
+/* line 38, ../../compass/sass/styles.scss */
+.content .img-holder img {
+  height: 100%;
+  width: 100%;
+}
+/* line 43, ../../compass/sass/styles.scss */
+.content .image-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  align-items: start;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+}
+/* line 51, ../../compass/sass/styles.scss */
+.content .image-gallery .img-holder {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.3);
+  max-width: 100%;
+}
+/* line 56, ../../compass/sass/styles.scss */
+.content .image-gallery .img-holder:nth-child(1), .content .image-gallery .img-holder:nth-child(4), .content .image-gallery .img-holder:nth-child(7), .content .image-gallery .img-holder:nth-child(10) {
+  grid-column: span 2;
 }
