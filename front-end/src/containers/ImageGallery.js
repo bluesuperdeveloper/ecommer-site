@@ -10,8 +10,11 @@ class ImageGallery extends Component{
 	}
 
 	componentDidMount() {
-		// console.log(this.props.match.params);
-		if(this.props.match.params.category == 'category'){
+		console.log("pass");
+		console.log(this.props.match.params.category);
+		if(this.props.match.params.category == undefined){
+			this.props.fetchImages();
+		}else{
 			this.props.fetchImages(this.props.match.params.category);
 		}
 

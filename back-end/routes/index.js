@@ -14,17 +14,19 @@ var connection = mysql.createConnection({
 
 connection.connect();
 /* GET home page. */
-router.get('/:category', function(req, res, next) {
+router.get('/', function(req, res, next) {
+	var selectQuery = "SELECT img, productName FROM products";
+	connection.query(selectQuery, (err, results)=>{
+		if(err) throw err;
+		res.json(results);
+	})
+});
+
+router.get('/products', function(req, res){
 	const category = req.params.category;
+	console.log(category);
 	const categoryId = 0;
-	if(category == ':category'){
-		var selectQuery = "SELECT img, productName FROM products";
-		connection.query(selectQuery, (err, results)=>{
-			if(err) throw err;
-			res.json(results);
-		})
-	}else{
-		console.log("pass else");
+	console.log("pass else");
 		switch(category){
 			case "apparel":
 				categoryId = 1;
@@ -55,18 +57,7 @@ router.get('/:category', function(req, res, next) {
 		}).catch(err=>{
 			res.json({msg: err})
 		})
-
-	}
-
-
-});
-
-router.get('/products/:category', function(req,res){
-	console.log(req.params.category);
-	const category = req.params.category;
-	const categoryId = 0;
-	
-});
+})
 
 router.post('/register', function(req,res){
 	const name = req.body.name;

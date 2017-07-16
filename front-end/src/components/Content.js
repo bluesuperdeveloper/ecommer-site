@@ -6,14 +6,14 @@ import Contact from '../containers/Contact';
 import ImageGallery from '../containers/ImageGallery';
 import Login from '../containers/Login';
 const Content = (props)=>{
-  console.log('content');
 	return(
 		<div className="container-fluid content text-center">
-			    <Route exact path="/:category" component={ImageGallery} />
+			    <Route path="/" component={ImageGallery} />
       		<Route exact path="/Register" component={Register} />
           <Route exact path="/login" component={Login} />
       		{/* <Route exact path="/our-story" component={OurStory} /> */}
       		{/*<Route exact path="/contact" component={Contact} />*/}
+          <Route path="/products/:category" component={ImageGallery} />
   	</div>
 
 	)
