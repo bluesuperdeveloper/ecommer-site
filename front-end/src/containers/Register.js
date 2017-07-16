@@ -8,7 +8,10 @@ class Register extends Component{
 	constructor(props) {
 		super(props);
 		this.state={
-			message: ''
+			message: '',
+			nameErr: null,
+			emailErr: null,
+			formErr: false
 		}
 		this.handleRegistration = this.handleRegistration.bind(this);
 	}
@@ -35,37 +38,59 @@ class Register extends Component{
 		var city = e.target[4].value;
 		var state = e.target[5].value;
 		var salesrep = e.target[6].value;
-		this.props.registerAction({
-			name,
-			email,
-			password,
-			type,
-			city,
-			state,
-			salesrep
-		})
+		var error = false;
+		if(name.length < 3){
+			var nameErr = "error";
+			error=true;
+		}else{
+			var nameErr = "success";
+		}
+		if(email.length < 3){
+			var emailErr = "error";
+			error=true;
+		}else{
+			var emailErr="success";
+		}
+
+		if(error){
+			this.setState({
+				formErr:true,
+				emailErr: emailErr,
+				nameErr:nameErr
+			})
+		}else{
+			this.props.registerAction({
+				name,
+				email,
+				password,
+				type,
+				city,
+				state,
+				salesrep
+			})
+		}
 	}
 	render(){
-
+		console.log(this.state.nameErr)
 		return(
 			<div className="register-wrapper">
 				<div className="message">
 					{this.state.message}
 				</div>
 				<Form horizontal onSubmit={this.handleRegistration}>
-					<FormGroup controlId="formHorizontalName">
+					<FormGroup controlId="formHorizontalName" validationState={this.state.nameErr}>
 						<Col componentClass={ControlLabel} sm={4}>
 							Name
 						</Col>
-						<Col sm={8}>
+						<Col sm={8} md={4}>
 							<FormControl type="text" placeholder="Full Name"/>
 						</Col>
 					</FormGroup>
-					<FormGroup controlId="formHorizontalName">
+					<FormGroup controlId="formHorizontalName" validationState={this.state.emailErr}>
 						<Col componentClass={ControlLabel} sm={4}>
 							Email
 						</Col>
-						<Col sm={8}>
+						<Col sm={8} md={4}>
 							<FormControl type="email" name="email" placeholder="Email"/>
 						</Col>
 					</FormGroup>
@@ -73,7 +98,7 @@ class Register extends Component{
 						<Col componentClass={ControlLabel} sm={4}>
 							Password
 						</Col>
-						<Col sm={8}>
+						<Col sm={8} md={4}>
 							<FormControl type="password" name="password" placeholder="Password"/>
 						</Col>
 					</FormGroup>
@@ -81,7 +106,7 @@ class Register extends Component{
 						<Col componentClass={ControlLabel} sm={4}>
 							City
 						</Col>
-						<Col sm={8}>
+						<Col sm={8} md={4}>
 						<FormControl type="text" name="city" placeholder="City"/>
 						</Col>
 					</FormGroup>
@@ -89,7 +114,7 @@ class Register extends Component{
 						<Col componentClass={ControlLabel} sm={4}>
 							State
 						</Col>
-						<Col sm={8}>
+						<Col sm={8} md={4}>
 							<FormControl type="text" name="state" placeholder="State"/>
 						</Col>
 					</FormGroup>
@@ -97,15 +122,15 @@ class Register extends Component{
 						<Col componentClass={ControlLabel} sm={4}>
 							SalesRep
 						</Col>
-						<Col sm={8}>
+						<Col sm={8} md={4}>
 							<FormControl type="number" name="salesrep" placeholder="Number"/>
 						</Col>
 					</FormGroup>
 					<FormGroup controlId="formAccountSelect">
-			            <Col componentClass={ControlLabel} sm={2}>
+			            <Col componentClass={ControlLabel} sm={4}>
 			                Account Type
 			            </Col>
-			            <Col sm={10}>
+			            <Col sm={8} md={4}>
 			                <FormControl componentClass="select" placeholder="formAccountSelect">
 			                    <option value="customer">Customer</option>
 			                    <option value="employee">Employee</option>

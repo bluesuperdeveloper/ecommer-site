@@ -10,18 +10,29 @@ class ImageGallery extends Component{
 	}
 
 	componentDidMount() {
-		this.props.fetchImages();
+		// console.log(this.props.match.params);
+		if(this.props.match.params.category == 'category'){
+			this.props.fetchImages(this.props.match.params.category);
+		}
 
 	}
 	render(){
 		const imageArr = [];
-		if(this.props.images == []){
-			return imageArr;
-		}else{
-			this.props.images.map((img,index)=>{
+		if(this.props.images.length < 1){
+			// console.log(this.props.images);
+			imageArr.push(<div key='1' className="img-holder">
+				<img src='./images/logo.jpg'/>
+				</div>);
+		}
+		else{
+			// console.log(this.props.images.data);
+			this.props.images.data.map((productInfo,index)=>{
 				imageArr.push(
 					<div key={index} className="img-holder">
-						<img src={img}/>
+						<img src={productInfo.img}/>
+						<span className="img-overlay"></span>
+						<span className="img-text desc">{productInfo.productName}</span>
+						<span className="img-text">QUICK VIEW</span>
 					</div>
 				)
 			})

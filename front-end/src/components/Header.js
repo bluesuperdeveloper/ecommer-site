@@ -9,7 +9,7 @@ const Header = ()=> {
       <div className="header">
       	<NavBarTop />
       	<div className="logo col-sm-12 text-center">
-      		<h3>:CHOCOLATE</h3>
+      		<a href="/"><h3>:CHOCOLATE</h3></a>
       	</div>
       	<NavBarBottom />
       </div>

@@ -57,7 +57,7 @@ class Login extends Component{
 						<Col componentClass={ControlLabel} sm={4}>
 							Email
 						</Col>
-						<Col sm={8}>
+						<Col sm={8} md={4}>
 							<FormControl type="email" name="email" placeholder="Email"/>
 						</Col>
 					</FormGroup>
@@ -65,7 +65,7 @@ class Login extends Component{
 						<Col componentClass={ControlLabel} sm={4}>
 							Password
 						</Col>
-						<Col sm={8}>
+						<Col sm={8} md={4}>
 							<FormControl type="password" name="password" placeholder="Password"/>
 						</Col>
 					</FormGroup>

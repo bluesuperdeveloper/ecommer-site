@@ -14,20 +14,58 @@ var connection = mysql.createConnection({
 
 connection.connect();
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/:category', function(req, res, next) {
+	const category = req.params.category;
+	const categoryId = 0;
+	if(category == ':category'){
+		var selectQuery = "SELECT img, productName FROM products";
+		connection.query(selectQuery, (err, results)=>{
+			if(err) throw err;
+			res.json(results);
+		})
+	}else{
+		console.log("pass else");
+		switch(category){
+			case "apparel":
+				categoryId = 1;
+			case "accessories":
+				categoryId = 2;
+			case "onsale":
+				categoryId = 3;
+		}
+		const getCategoryId = new Promise((resolve, reject)=>{
+			var selectQuery = "SELECT id FROM categories WHERE category = ?";
+			connection.query(selectQuery, [category], (err,results)=>{
+				if(err) throw err;
+				if(results.length > 1){
+					reject({msg: 'inValidInput'});
+				}else{
+					console.log(results);
+					categoryId = results[0];
+					resolve();
+				}
+			})
+		})
+		getCategoryId.then(()=>{
+			var selectQuery = "SELECT img, productName FROM products WHERE categoryId = ?";
+			connection.query(selectQuery,[categoryId], (err, results)=>{
+				if(err) throw err;
+				res.json(results);
+			})
+		}).catch(err=>{
+			res.json({msg: err})
+		})
+
+	}
+
+
 });
 
-router.get('/productlines/get', function(req,res){
-	const selectQuery = "SELECT * FROM productlines";
-	connection.query(selectQuery, (err, results)=>{
-		if(err){
-			res.json({msg: err});
-		}else{
-			console.log(results);
-			res.json(results);
-		};
-	});
+router.get('/products/:category', function(req,res){
+	console.log(req.params.category);
+	const category = req.params.category;
+	const categoryId = 0;
+	
 });
 
 router.post('/register', function(req,res){
