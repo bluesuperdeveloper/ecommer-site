@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {Link} from 'react-router-dom';
 import fetchImages from '../actions/fetchImages';
 import Images from '../reducers/ImageReducer';
 
@@ -8,11 +9,21 @@ class ImageGallery extends Component{
 	constructor(props) {
 		super(props);
 	}
-
+	componentWillReceiveProps(nextProps) {
+		if(this.props.match.params != undefined){
+			if(this.props.match.params.category != nextProps.match.params.category){
+				if(nextProps.match.params.category == undefined){
+					this.props.fetchImages();
+				}else{
+					this.props.fetchImages(nextProps.match.params.category);
+				}
+			}
+		}
+	}
 	componentDidMount() {
 		console.log("pass");
 		console.log(this.props.match.params.category);
-		if(this.props.match.params.category == undefined){
+		if(this.props.match.params.category === undefined){
 			this.props.fetchImages();
 		}else{
 			this.props.fetchImages(this.props.match.params.category);
@@ -28,14 +39,14 @@ class ImageGallery extends Component{
 				</div>);
 		}
 		else{
-			// console.log(this.props.images.data);
+			console.log(this.props.images.data);
 			this.props.images.data.map((productInfo,index)=>{
 				imageArr.push(
 					<div key={index} className="img-holder">
 						<img src={productInfo.img}/>
 						<span className="img-overlay"></span>
 						<span className="img-text desc">{productInfo.productName}</span>
-						<span className="img-text">QUICK VIEW</span>
+						<Link to={`/shop/${productInfo.id}`}><span className="img-text">QUICK VIEW</span></Link>
 					</div>
 				)
 			})

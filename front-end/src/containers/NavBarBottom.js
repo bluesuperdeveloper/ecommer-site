@@ -9,9 +9,9 @@ class NavBarBottom extends Component{
 				<div className="col-sm-12 text-center">
 					<ul>
 						<Link to="/"><li className="bottom-nav-item">ALL</li></Link>
-						<Link to="/products/:apparel"><li className="bottom-nav-item">APPARELS</li></Link>
-						<Link to="/products/:eyeware"><li className="bottom-nav-item">ACCESSORIES</li></Link>
-						<Link to="/products/:shoes"><li className="bottom-nav-item">SHOES</li></Link>
+						<Link to="/products/apparel"><li className="bottom-nav-item">APPARELS</li></Link>
+						<Link to="/products/accessories"><li className="bottom-nav-item">ACCESSORIES</li></Link>
+						<Link to="/products/onsale"><li className="bottom-nav-item">ON SALE</li></Link>
 					</ul>
 				</div>
 			</div>

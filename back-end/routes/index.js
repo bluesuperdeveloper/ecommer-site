@@ -15,48 +15,39 @@ var connection = mysql.createConnection({
 connection.connect();
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	var selectQuery = "SELECT img, productName FROM products";
+	var selectQuery = "SELECT * FROM products";
 	connection.query(selectQuery, (err, results)=>{
 		if(err) throw err;
 		res.json(results);
 	})
 });
 
-router.get('/products', function(req, res){
+router.get('/products/:category', function(req, res){
 	const category = req.params.category;
-	console.log(category);
-	const categoryId = 0;
-	console.log("pass else");
-		switch(category){
-			case "apparel":
-				categoryId = 1;
-			case "accessories":
-				categoryId = 2;
-			case "onsale":
-				categoryId = 3;
-		}
-		const getCategoryId = new Promise((resolve, reject)=>{
-			var selectQuery = "SELECT id FROM categories WHERE category = ?";
-			connection.query(selectQuery, [category], (err,results)=>{
-				if(err) throw err;
-				if(results.length > 1){
-					reject({msg: 'inValidInput'});
-				}else{
-					console.log(results);
-					categoryId = results[0];
-					resolve();
-				}
-			})
+	var categoryId;
+	const getCategoryId = new Promise((resolve, reject)=>{
+		var selectQuery = "SELECT id FROM categories WHERE category = ?";
+		console.log(category)
+		connection.query(selectQuery, [category], (err,results)=>{
+			if(err) throw err;
+			if(results.length > 1){
+				reject({msg: 'inValidInput'});
+			}else{
+				console.log(results);
+				categoryId = results[0].id;
+				resolve();
+			}
 		})
-		getCategoryId.then(()=>{
-			var selectQuery = "SELECT img, productName FROM products WHERE categoryId = ?";
-			connection.query(selectQuery,[categoryId], (err, results)=>{
-				if(err) throw err;
-				res.json(results);
-			})
-		}).catch(err=>{
-			res.json({msg: err})
+	})
+	getCategoryId.then(()=>{
+		var selectQuery = "SELECT * FROM products WHERE categoryId = ?";
+		connection.query(selectQuery,[categoryId], (err, results)=>{
+			if(err) throw err;
+			res.json(results);
 		})
+	}).catch(err=>{
+		res.json({msg: err})
+	})
 })
 
 router.post('/register', function(req,res){

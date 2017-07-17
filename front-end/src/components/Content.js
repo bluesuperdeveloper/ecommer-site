@@ -8,7 +8,7 @@ import Login from '../containers/Login';
 const Content = (props)=>{
 	return(
 		<div className="container-fluid content text-center">
-			    <Route path="/" component={ImageGallery} />
+			    <Route exact path="/" component={ImageGallery} />
       		<Route exact path="/Register" component={Register} />
           <Route exact path="/login" component={Login} />
       		{/* <Route exact path="/our-story" component={OurStory} /> */}
