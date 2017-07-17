@@ -11,7 +11,7 @@ const Content = (props)=>{
 			    <Route exact path="/" component={ImageGallery} />
       		<Route exact path="/Register" component={Register} />
           <Route exact path="/login" component={Login} />
-      		{/* <Route exact path="/our-story" component={OurStory} /> */}
+      		<Route exact path="/our-story" component={OurStory} />
       		{/*<Route exact path="/contact" component={Contact} />*/}
           <Route path="/products/:category" component={ImageGallery} />
   	</div>

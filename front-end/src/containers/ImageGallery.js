@@ -39,7 +39,7 @@ class ImageGallery extends Component{
 				</div>);
 		}
 		else{
-			console.log(this.props.images.data);
+			// console.log(this.props.images.data);
 			this.props.images.data.map((productInfo,index)=>{
 				imageArr.push(
 					<div key={index} className="img-holder">
