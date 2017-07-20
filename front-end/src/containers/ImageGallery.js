@@ -32,8 +32,8 @@ class ImageGallery extends Component{
 	}
 	render(){
 		const imageArr = [];
+		console.log(this.props.images);
 		if(this.props.images.length < 1){
-			// console.log(this.props.images);
 			imageArr.push(<div key='1' className="img-holder">
 				<img src='./images/logo.jpg'/>
 				</div>);

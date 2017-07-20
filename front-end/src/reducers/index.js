@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import ImageReducer from './ImageReducer';
-import RegisterReducer from './RegisterReducer';
+import UserReducer from './UserReducer';
 
 // console.log(RegisterReducer);
 const rootReducer = combineReducers({
 	images: ImageReducer,
-	registerReducer: RegisterReducer
+	userReducer: UserReducer
 })
 
 export default rootReducer;

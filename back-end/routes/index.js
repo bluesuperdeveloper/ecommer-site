@@ -50,6 +50,9 @@ router.get('/products/:category', function(req, res){
 	})
 })
 
+router.post('/getCart', (req, res)=>{
+	
+})
 router.post('/register', function(req,res){
 	const name = req.body.name;
 	const email = req.body.email;

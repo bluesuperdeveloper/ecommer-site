@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from '../components/Header';
-import Content from '../components/Content';
+import Header from './Header';
+import Content from './Content';
+import Footer from './Footer';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
       <div className="App">
       	<Header />
       	<Content />
+        <Footer />
       </div>
     </Router>
     );

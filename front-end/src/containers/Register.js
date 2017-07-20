@@ -151,7 +151,7 @@ class Register extends Component{
 }
 function mapStateToProps(state){
 	return {
-		registerResponse: state.registerReducer
+		registerResponse: state.userReducer
 	}
 }
 function mapDispatchToProps(dispatch){

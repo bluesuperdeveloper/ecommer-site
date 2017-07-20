@@ -5,6 +5,7 @@ import OurStory from '../containers/OurStory';
 import Contact from '../containers/Contact';
 import ImageGallery from '../containers/ImageGallery';
 import Login from '../containers/Login';
+import Shop from '../containers/Shop';
 const Content = (props)=>{
 	return(
 		<div className="container-fluid content text-center">
@@ -14,6 +15,7 @@ const Content = (props)=>{
       		<Route exact path="/our-story" component={OurStory} />
       		{/*<Route exact path="/contact" component={Contact} />*/}
           <Route path="/products/:category" component={ImageGallery} />
+          <Route exact path="/shop/:productId" component={Shop} />
   	</div>
 
 	)
